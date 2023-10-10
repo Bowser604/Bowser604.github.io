@@ -1,8 +1,7 @@
 
 alert("Hello, World");
 
-
-let myName = 'Bob';
-document.write(myName);
-myName = 'John Doe';
-document.write(myName);
+const favoriteFood = 'ramen'; 
+document.write(favoriteFood); 
+const poutine = 'peaches'; 
+document.write(poutine); 
