@@ -1,4 +1,5 @@
-let pokemonList = [{
+let pokemonRepository = (function () {
+  let pokemonList = [{
     name: 'Charizard', height: 1.7, types: ['Fire'], 
     abilities: ['blaze', 'solar-power']
 },
@@ -11,8 +12,18 @@ let pokemonList = [{
     abilities: ['synchronize', 'inner-focus']
 }
 ];
+    return {
+        add: function(pokemon) {
+            pokemonList.push(pokemon);
+        };
+        getAll:function(){
+        return pokemonList
+    }
+ };
+})();
 
-pokemonList.forEach((pokemon) => {
+// Using forEach to iterate over the pokemonList from the pokemonRepository
+pokemonRepository.getAll().forEach((pokemon) => {
   if (pokemon.height > 1) {
     document.write(
         ${pokemon.name} (height: ${pokemon.height}) - Wow. Thants Big!<br>
