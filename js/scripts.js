@@ -34,14 +34,5 @@ let pokemonListContainer = document.querySelector('.pokemon-list');
 
 // Using forEach to iterate over the pokemonList from the pokemonRepository  
 pokemonRepository.getAll().forEach((pokemon) => {
-    let listItem = document.createElement('li');
-    
-    if (pokemon.height > 1) {
-        listItem.textContent = `${pokemon.name} (height: ${pokemon.height}) - Wow. That's Big!<br>`
-        );
-    } else {
-        listItem.textContent = `${pokemon.name} (height: ${pokemon.height})`);
-    }
-
-    pokemonListContainer.appendChild(listItem);
+ 
 });
