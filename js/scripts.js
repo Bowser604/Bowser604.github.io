@@ -1,4 +1,4 @@
-let pokemonRepository = (function () {
+var pokemonRepository = (function () {
     let repository = [
         {
             name: 'Charizard',
@@ -25,11 +25,11 @@ let pokemonRepository = (function () {
     }
     function addListItem(pokemon){
       let pokemonList = document.querySelector(".pokemon-list");
-      let listpokemon = document.createElement("li");
-      let button = document.creatElement("button");
-      button.innertext = pokemon.name;
+      let listPokemon = document.createElement("li");
+      let button = document.createElement("button");
+      button.innerText = pokemon.name;
       button.classList.add("button-class")
-      listpokemon.appendChild(button);
+      listPokemon.appendChild(button);
       pokemonList.appendChild(listpokemon); 
     }
     return {
