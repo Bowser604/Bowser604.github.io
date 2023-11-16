@@ -30,17 +30,18 @@ let pokemonRepository = (function () {
     };
 })();
 
-// Using forEach to iterate over the pokemonList from the pokemonRepository
-document.write('ul class="pokemon-listlist">');   // orderList
+let pokemonListContainer = document.querySelector('.pokemon-list');
+
+// Using forEach to iterate over the pokemonList from the pokemonRepository  
 pokemonRepository.getAll().forEach((pokemon) => {
-    document.write('<li>');
+    let listItem = document.createElement('li');
+    
     if (pokemon.height > 1) {
-        document.write(
-            `${pokemon.name} (height: ${pokemon.height}) - Wow. That's Big!<br>`
+        listItem.textContent = `${pokemon.name} (height: ${pokemon.height}) - Wow. That's Big!<br>`
         );
     } else {
-        document.write(`${pokemon.name} (height: ${pokemon.height})<br>`);
+        listItem.textContent = `${pokemon.name} (height: ${pokemon.height})`);
     }
-    document.write('</li>')
+
+    pokemonListContainer.appendChild(listItem);
 });
-document.write('</ul>');
