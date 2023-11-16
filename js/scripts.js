@@ -1,5 +1,5 @@
 let pokemonRepository = (function () {
-    let pokemonList = [
+    let repository = [
         {
             name: 'Charizard',
             height: 1.7,
@@ -20,6 +20,18 @@ let pokemonRepository = (function () {
         }
     ];
 
+    function getAll() {
+        return repository;
+    }
+    function addListItem(pokemon){
+      let pokemonList = document.querySelector(".pokemon-list");
+      let listpokemon = document.createElement("li");
+      let button = document.creatElement("button");
+      button.innertext = pokemon.name;
+      button.classList.add("button-class")
+      listpokemon.appendChild(button);
+      pokemonList.appendChild(listpokemon); 
+    }
     return {
         add: function (pokemon) {
             pokemonList.push(pokemon);
@@ -27,12 +39,14 @@ let pokemonRepository = (function () {
         getAll: function () {
             return pokemonList;
         }
+        addListItem: addListItem
     };
 })();
 
-let pokemonListContainer = document.querySelector('.pokemon-list');
+console.log(pokemonRepository.getAll());
 
 // Using forEach to iterate over the pokemonList from the pokemonRepository  
-pokemonRepository.getAll().forEach((pokemon) => {
- 
+pokemonRepository.getAll().forEach(function (pokemon) {
+  pokemonRepository.addListItem(pokemon)
+   
 });
