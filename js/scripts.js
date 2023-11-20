@@ -23,6 +23,9 @@ var pokemonRepository = (function () {
     function getAll() {
         return repository;
     }
+    function showDetails(pokemon) {
+        console.log(pokemon.target.innerText);
+    }
     function addListItem(pokemon){
       let pokemonList = document.querySelector(".pokemon-list");
       let listPokemon = document.createElement("li");
