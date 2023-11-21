@@ -10,7 +10,7 @@ var pokemonRepository = (function () {
             name: 'Pikachu',
             height: 0.4,
             types: ['Electric'],
-            abilities: ['static', 'lighting-rod']
+            abilities: ['static', 'lightning-rod']
         },
         {
             name: 'Abra',
@@ -23,26 +23,25 @@ var pokemonRepository = (function () {
     function getAll() {
         return repository;
     }
-    function showDetails(pokemon) {
-        console.log(pokemon.target.innerText);
-    }
     function addListItem(pokemon){
       let pokemonList = document.querySelector(".pokemon-list");
       let listPokemon = document.createElement("li");
       let button = document.createElement("button");
       button.innerText = pokemon.name;
       button.classList.add("button-class")
-      button.addEventListener('click', showDetail);
+      button.addEventListener("click", function () {   // click event handling logic 
+        console.log(pokemon.name + ' was clicked!');
+    });
       listPokemon.appendChild(button);
-      pokemonList.appendChild(listpokemon); 
+      pokemonList.appendChild(listPokemon); // fixed typo
     }
     return {
         add: function (pokemon) {
-            pokemonList.push(pokemon);
+            repository.push(pokemon); // fixed typo
         },
         getAll: function () {
-            return pokemonList;
-        }
+            return repository;
+        },
         addListItem: addListItem
     };
 })();
