@@ -1,24 +1,6 @@
-var pokemonRepository = (function () {
-    let repository = [
-        {
-            name: 'Charizard',
-            height: 1.7,
-            types: ['Fire'],
-            abilities: ['blaze', 'solar-power']
-        },
-        {
-            name: 'Pikachu',
-            height: 0.4,
-            types: ['Electric'],
-            abilities: ['static', 'lightning-rod']
-        },
-        {
-            name: 'Abra',
-            height: 0.9,
-            types: ['Psychic'],
-            abilities: ['synchronize', 'inner-focus']
-        }
-    ];
+let pokemonRepository = (function () {
+    let pokemonList = [];
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
     function getAll() {
         return repository;
