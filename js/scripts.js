@@ -14,7 +14,7 @@ let pokemonRepository = (function () {
       listPokemon.appendChild(button);
       pokemonListElement.appendChild(listPokemon); // fixed typo
       button.addEventListener("click", function (event) {   // click event handling logic 
-        console.log(pokemon.name + ' was clicked!');
+        showDetails(pokemon) //  Updated to show datails 
     });
   }
 
