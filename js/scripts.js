@@ -18,56 +18,56 @@ let pokemonRepository = (function () {
     });
   }
 
-     function loadList() {
-    return fetch(apiUrl).then(function (response) {
-      return response.json();
-    }).then(function (json) {
-      json.results.forEach(function (item) {
-        let pokemon = {
-          name: item.name,
-          detailsUrl: item.url
-        };
-        add(pokemon); // fixed typo
-      });
-    }).catch(function (e) {
-      console.error(e);
-    })
+  function loadList() {
+    return fetch(apiUrl)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (json) {
+          json.results.forEach(function (item) {
+            let pokemon = {
+              name: item.name,
+              detailsUrl: item.url
+            };
+            addListItem(pokemon); // Fixed function name
+          });
+        })
+        .catch(function (e) {
+          console.error(e);
+        })
   }
     
   function loadDetails(item) {
     let url = item.detailsUrl;
-    return fetch(url).then(function (response) {
-      return response.json();
-    }).then(function (details) {
-      // Now we add the details to the item
-      item.imageUrl = details.sprites.front_default;
-      item.height = details.height;
-      item.types = details.types;
-    })
-    .catch(function (e) {
-      console.error(e);
-    });
+    return fetch(url)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (details) {
+        // Added the details to the item
+          item.imageUrl = details.sprites.front_default;
+          item.height = details.height;
+          item.types = details.types;
+         })
+         .catch(function (e) {
+           console.error(e);
+         });
   }
 
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-    console.log(pokemon);
-  });
-}  
+      console.log(pokemon);
+    });
+  }  
     
-    return {
-        add: function (pokemon) {
-            pokemonList.push(pokemon); // fixed typo
-        },
-        getAll: getAll,
+  return {
         addListItem: addListItem,
+        getAll: getAll,
         loadList: loadList,
         loadDetails: loadDetails,
         showDetails: showDetails,
     };
 })();
-
-// console.log(pokemonRepository.getAll());
 
 pokemonRepository.loadList().then(function() {
   pokemonRepository.getAll().forEach(function (pokemon) {
