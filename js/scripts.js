@@ -5,7 +5,7 @@ let pokemonRepository = (function () {
 
     
   // modal container
-function showMadal(title, text) {
+function showModal(title, text) {
   modalContainer.innerHTML = '';
   let modal = document.createElement('div');
   modal.classList.add('modal');
@@ -32,7 +32,6 @@ function showMadal(title, text) {
 let dialogPromiseReject; // This can be set later, by showDialog
 
 function hideModal() {
-  let modalContainer = document.querySelector('#modal-container');
   modalContainer.classList.remove('is-visible');
 
   if (dialogPromiseReject) {
@@ -43,9 +42,6 @@ function hideModal() {
 
 function showDialog(title, text) {
   showModal(title, text);
-
-  // We have defined modalContainer here
-  let modalContainer = document.querySelector('#modal-container');
 
   // We want to add a confirm and cancel button to the modal
   let modal = modalContainer.querySelector('.modal');
@@ -84,7 +80,6 @@ document.querySelector('#show-dialog').addEventListener('click', () => {
   });
 });
   
-
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
     hideModal();  
@@ -100,7 +95,7 @@ modalContainer.addEventListener('click', (e) => {
   }
 });
   
-  document.querySelecter('#show-modal').addEventListener('click',()=> {
+  document.querySelector('#show-modal').addEventListener('click',()=> {
       showModal('Modal title', 'This is the modal content!');
   });
 
@@ -166,12 +161,12 @@ modalContainer.addEventListener('click', (e) => {
   }  
     
   return {
-        addListItem: addListItem,
-        getAll: getAll,
-        loadList: loadList,
-        loadDetails: loadDetails,
-        showDetails: showDetails,
-    };
+    addListItem: addListItem,
+    getAll: getAll,
+    loadList: loadList,
+    loadDetails: loadDetails,
+    showDetails: showDetails,
+  };
 })();
 
 pokemonRepository.loadList().then(function() {
