@@ -29,9 +29,17 @@ function showMadal(title, text) {
   modalContainer.classList.add('is-visible');
  }
 
+let dialogPromiseReject; // This can be set later, by showDialog
+
 function hideModal() {
+  let modalContainer = document.querySelector('#modal-container');
   modalContainer.classList.remove('is-visible');
- }
+
+  if (dialogPromiseReject) {
+    dialogPromiseReject();
+    dialogPromiseReject = null;
+  }
+}
 
 function showDialog(title, text) {
   showModal(title, text);
@@ -55,7 +63,27 @@ function showDialog(title, text) {
 
   // We want to focus the confirmButton so that the user can simply press Enter
   confirmButton.focus();
+  // Return a promise that resolves when confirmed, else rejects
+  return new Promise((resolve, reject) => {
+  cancelButton.addEventListener('click', hideModal);
+  confirmButton.addEventListener('click', () => {
+    dialogPromiseReject = null; // Reset this
+    hideModal();
+    resolve();
+  });
+    // This can be used to reject from other functions
+  dialogPromiseReject = reject;
+});
 }
+
+document.querySelector('#show-dialog').addEventListener('click', () => {
+  showDialog('Confirm action', 'Are you sure you want to do this?').then(function() {
+    alert('confirmed!');
+  }, () => {
+    alert('not confirmed');
+  });
+});
+  
 
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
