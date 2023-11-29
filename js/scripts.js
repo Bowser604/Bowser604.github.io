@@ -16,10 +16,14 @@ function showModal(title, text) {
   closeButtonElement.addEventListener('click', hideModal);
 
   let titleElement = document.createElement('h1');
-  titleElement.innerText = title;
+  titleElement.innerText = 'Pokemon name' +': '+ pokemon.name;
 
   let contentElement = document.createElement('p');
-  contentElement.innerText = text;
+  contentElement.innerText = 'Pokemon height' + ': ' + pokemon.height;
+
+  let myImage = document.createElement('img');
+  myImage.src = pokemon.imageUrl; 
+  modal.appendChild(myImage);
 
   modal.appendChild(closeButtonElement);
   modal.appendChild(titleElement);
@@ -118,20 +122,20 @@ modalContainer.addEventListener('click', (e) => {
      });
   }
 
-  function loadList() {
-    return fetch(apiUrl)
+  function loadList(item) {
+    let url = item.detailsUrl;
+    return fetch(Url)
         .then(function (response) {
           return response.json();
         })
-        .then(function (json) {
-          json.results.forEach(function (item) {
-            let pokemon = {
-              name: item.name,
-              detailsUrl: item.url
-            };
-            addListItem(pokemon); // Fixed function name
-          });
+        .then(function (details) {
+          item.imageUrl = details.sprites.front_default;
+          item.height = details.height;
+          item.types = details.types;
         })
+          addListItem(pokemon); // Fixed function name
+          });
+      })
         .catch(function (e) {
           console.error(e);
         })
