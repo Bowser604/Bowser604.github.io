@@ -5,7 +5,7 @@ let pokemonRepository = (function () {
 
     
   // modal container
-function showModal(title, text) {
+function showModal(pokemon) {
   modalContainer.innerHTML = '';
   let modal = document.createElement('div');
   modal.classList.add('modal');
@@ -16,13 +16,13 @@ function showModal(title, text) {
   closeButtonElement.addEventListener('click', hideModal);
 
   let titleElement = document.createElement('h1');
-  titleElement.innerText = 'Pokemon name' +': '+ pokemon.name;
+  titleElement.innerText = 'Pokemon name' + ': ' + pokemon.name;
 
   let contentElement = document.createElement('p');
   contentElement.innerText = 'Pokemon height' + ': ' + pokemon.height;
 
   let myImage = document.createElement('img');
-  myImage.src = pokemon.imageUrl; 
+  myImage.src = pokemon.imageurl; 
   modal.appendChild(myImage);
 
   modal.appendChild(closeButtonElement);
@@ -122,23 +122,21 @@ modalContainer.addEventListener('click', (e) => {
      });
   }
 
-  function loadList(item) {
+  function loadList(pokemon) {
     let url = item.detailsUrl;
-    return fetch(Url)
+    return fetch(url)
         .then(function (response) {
           return response.json();
         })
         .then(function (details) {
-          item.imageUrl = details.sprites.front_default;
-          item.height = details.height;
-          item.types = details.types;
+          pokemon.imageUrl = details.sprites.front_default;
+          pokemon.height = details.height;
+          pokemon.types = details.types;
+          addListItem(pokemon); 
         })
-          addListItem(pokemon); // Fixed function name
-          });
-      })
         .catch(function (e) {
           console.error(e);
-        })
+        });
   }
     
   function loadDetails(item) {
@@ -173,8 +171,8 @@ modalContainer.addEventListener('click', (e) => {
   };
 })();
 
-pokemonRepository.loadList().then(function() {
+pokemonRepository.loadList(pokemon).then(function() {
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon) 
   });
-});
+}); 
