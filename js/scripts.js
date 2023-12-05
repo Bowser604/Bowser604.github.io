@@ -39,15 +39,15 @@ function addListItem(pokemon){
  });
 }
 
-// function addListItem(pokemon) {
-//   const $pokemonList = document.querySelector('.pokemon-list');
-//   const $listItem = document.createElement('li')
-//   const $button = document.createElement('button');
-//   $button.innerHTML = pokemon.name
+function addListItem(pokemon) {
+  const $pokemonList = document.querySelector('.pokemon-list');
+  const $listItem = document.createElement('li')
+  const $button = document.createElement('button');
+  $button.innerHTML = pokemon.name
 
-//   $pokemonList.appendChild($listItem);
-//   $listItem.appendChild($button);
-//   $button.classList.add('button-class');
+  $pokemonList.appendChild($listItem);
+  $listItem.appendChild($button);
+  $button.classList.add('button-class');
   // event listener within function
   // $button.addEventListener('click', function (e) {
   //     showDetails(pokemon);
