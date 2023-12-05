@@ -120,6 +120,7 @@ function showModal(pokemon) {
 }
 
 
+
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
     hideModal();  
@@ -135,6 +136,11 @@ modalContainer.addEventListener('click', (e) => {
   }
 });
 
+
+
+
+
+
   return {
     addListItem: addListItem,
     getAll: getAll,
@@ -148,6 +154,6 @@ pokemonRepository.loadList().then(function() {
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon) 
   });
-});   
-  
+});
+
 
