@@ -33,11 +33,11 @@ html,
 body {
   font-family: Arial, sans-serif;
 }
-#modal-container {
+.modal-container {
 display: none;
 }
 
-#modal-container.is-visible {
+.modal-container.is-visible {
 position: fixed;
 padding: 20px;
 box-sizing: border-box;
