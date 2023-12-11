@@ -98,3 +98,10 @@ margin: auto;
 height: 50px;
 width: 50px;
 } 
+
+nav {
+  width: 160px;
+  height: 60px;
+  background-color: #d33737;
+
+}
