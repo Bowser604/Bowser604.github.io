@@ -139,19 +139,20 @@ function showModal(item) {
 
   let myImage = document.createElement('img');
   myImage.src = item.imageUrl;
-  
+
   // Append elements to the modal
   modal.appendChild(myImage);
   modal.appendChild(closeButtonElement);
   modal.appendChild(titleElement);
   modal.appendChild(contentElement);
 
+
   // Append modal to the modal container
   modalContainer.appendChild(modal);
 
-  // Add the 'is-visible' class to show the modal
-  modalContainer.classList.add('is-visible');
- }
+ // Add the 'is-visible' class to show the modal
+ modalContainer.classList.add('is-visible');
+}
 
 function hideModal() {
   modalContainer.classList.remove('is-visible');
@@ -179,7 +180,6 @@ modalContainer.addEventListener('click', (e) => {
     hideModal();
   }
 });
-
 
   return {
     addListItem: addListItem,
