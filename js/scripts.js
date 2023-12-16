@@ -1,15 +1,14 @@
 let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-  // let modalContainer = document.querySelector(".modal-container");
-
+  let modalContainer = document.querySelector(".modal-container");
+  console.log("modalContainer", modalContainer);
 
   function loadDetails(item) {
     var url = item.detailsUrl;
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
-      // add the details to the item
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = Object.keys(details.types);
@@ -27,21 +26,7 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
-  // function addListItem(pokemon) {
-  //   let pokemonListElement = document.querySelector(".pokemon-list");
-  //   let listPokemon = document.createElement("li");
-  //   let button = document.createElement("button");
-  //   button.innerText = pokemon.name;
-
-  //   button.classList.add("button-class")
-  //   listPokemon.appendChild(button);
-  //   pokemonListElement.appendChild(listPokemon); // fixed typo
-  //   button.addEventListener("click", function (event) {   // click event handling logic 
-  //     showDetails(pokemon) //  Updated to show datails 
-  //   });
-  // }
-
- function addListItem(pokemon) { 
+  function addListItem(pokemon) {
     const $pokemonList = document.querySelector('.pokemon-list');
     const $listItem = document.createElement('li')
     const $button = document.createElement('button');
@@ -51,21 +36,14 @@ let pokemonRepository = (function () {
     $listItem.appendChild($button);
     $button.classList.add('button-class');
     // event listener within function
-    $button.addEventListener('click', function (e) { 
+    $button.addEventListener('click', function (e) {
       showDetails(pokemon);
-      clickPokemonButtonHandler($button, pokemon);
-   })
-  }
-  
-  function clickPokemonButtonHandler(button, pokemonObject) {
-    button.addEventListener('click', function () {
-      showDetails(pokemonObject)
-    })
+    });
   }
 
+
   function showDetails(pokemon) {
-    pokemonRepository.loadDetails(pokemon).then(function () {
-      console.log('show details ', pokemon);
+    loadDetails(pokemon).then(function () {
       showModal(pokemon);
     });
   }
@@ -85,7 +63,6 @@ let pokemonRepository = (function () {
       console.error(e);
     })
   }
-
 
   // modal container
   function showModal(item) {
@@ -160,30 +137,22 @@ let pokemonRepository = (function () {
     modalContainer.classList.remove('is-visible');
   }
 
-  // Pass 'item' as an argument to showDetails function
-  function showDetails(item) {
-    pokemonRepository.loadDetails(item).then(function () {
-      console.log('show details ', item);
-      showModal(item);
-    });
-  }
 
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
       hideModal();
     }
   });
-
-  // modalContainer.addEventListener('click', (e) => {
-  // also triggered when clicking INSIDE the modal
-  // only want to close if the user clicks directly on the overlay
-  let target = e.target;
-    if (target === modalContainer) {
-      hideModal();
-    // console.error(e)
-    }
-  });
-
+  if (modalContainer) {
+    modalContainer.addEventListener('click', (e) => {
+      // also triggered when clicking INSIDE the modal
+      // only want to close if the user clicks directly on the overlay
+      let target = e.target;
+      if (target === modalContainer) {
+        hideModal();
+      }
+    });
+  }
 
   return {
     addListItem: addListItem,
@@ -194,14 +163,13 @@ let pokemonRepository = (function () {
   };
 
 })();
- 
-modalContainer.addEventListener('click', (e) => {
-  let pokemonRepository = (function () {
-  })();
 
-pokemonRepository.loadList().then(function () {
-  pokemonRepository.getAll().forEach(function (pokemon) {
-    pokemonRepository.addListItem(pokemon)
+
+document.addEventListener('DOMContentLoaded', function () {
+  pokemonRepository.loadList().then(function () {
+    pokemonRepository.getAll().forEach(function (pokemon) {
+      pokemonRepository.addListItem(pokemon)
     });
   });
 });
+ 
