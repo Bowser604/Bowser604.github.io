@@ -1,7 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
-  console.log('DOM fully loaded and parsed');
-
-  let pokemonRepository = (function () {
+let pokemonRepository = (function () {
     let pokemonList = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
     let modalContainer = document.querySelector(".modal-container");
@@ -98,9 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
       let modalTitle = $(".modal-title");
       let modalHeader = $(".modal-header");
       let nameElement = $("<h1>" + item.name + "</h1>");
-      // // let $modalContainer = $("modal-container");
-      // // clear existing content of the modal
-      // // modalHeader.empty();
+  
       modalTitle.empty();
       modalBody.empty();
 
@@ -115,23 +110,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
       $("#pokemonModal").modal("toggle"); // this shows modal
     }
-
-    function hideModal() {
-      modalContainer.classList.remove('is-visible');
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-        hideModal();
-      }
-    });
-
-    modalContainer.addEventListener('click', (e) => {
-      let target = e.target;
-      if (target === modalContainer) {
-        hideModal();
-      }
-    });
 
     return {
       addListItem: addListItem,
@@ -148,4 +126,3 @@ document.addEventListener('DOMContentLoaded', function () {
       pokemonRepository.addListItem(pokemon)
     });
   });
-});
