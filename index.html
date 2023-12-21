@@ -10,10 +10,14 @@
   <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 
+<header>
+  <h1 class="display-3">Pokemon-Index</h1>
+</header>
+
 <body>
   <!-- navbar -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-light">
-    <span class="navbar-brand">Pokédex</span>
+    <span class="navbar-brand">Menu</span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -27,15 +31,8 @@
     </div>
   </nav>
 
-  <!-- main -->
-  <div class="container">
-    <header>
-      <h1>Pokémon List</h1>
-    </header>
-    <ul class="list-group pokemon-list"></ul>
-  </div>
   <div class="container modal-open">
-    <h1 class="display-3">Pokemon-Index</h1>
+
     <ul class="list-group list-unstyled" id="pokemonList"></ul>
     <div class="modal-container modal fade" id="pokemonModal" tabindex="-1" role="dialog"
       aria-labelledby="pokemonModalLabel" aria-hidden="true">
@@ -55,6 +52,12 @@
       </div>
     </div>
   </div>
+
+  <div class="container">
+    <h2>Pokémon List</h2>
+    <ul class="list-group pokemon-list"></ul>
+  </div>
+
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
@@ -62,4 +65,4 @@
   <script src="js/scripts.js"></script>
 </body>
 
-</html> 
+</html>
